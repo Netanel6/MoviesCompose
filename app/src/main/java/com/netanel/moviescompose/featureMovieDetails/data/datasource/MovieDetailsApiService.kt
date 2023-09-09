@@ -1,9 +1,9 @@
 package com.netanel.moviescompose.featureMovieDetails.data.datasource
 
-import com.netanel.moviescompose.domain.model.Movie
+import com.netanel.moviescompose.domain.model.MovieDetailsModel
 import retrofit2.Call
 import retrofit2.http.GET
-import retrofit2.http.Path
+import retrofit2.http.Query
 
 
 /**
@@ -13,9 +13,9 @@ import retrofit2.http.Path
 interface MovieDetailsApiService {
 
     companion object{
-        const val MOVIE_ID : String = "movieId"
+        const val MOVIE_ID : String = "idsList"
     }
 
-    @GET("titles/x/titles-by-ids?idsList=$MOVIE_ID")
-    fun getMovieDetails(@Path(MOVIE_ID) movieId:String): Call<List<Movie>>
+    @GET("titles/x/titles-by-ids")
+    fun getMovieDetails(@Query(MOVIE_ID) movieId:String): Call<MovieDetailsModel>
 }

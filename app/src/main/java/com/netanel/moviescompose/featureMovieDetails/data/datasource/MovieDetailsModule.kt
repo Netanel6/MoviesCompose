@@ -1,5 +1,6 @@
 package com.netanel.moviescompose.featureMovieDetails.data.datasource
 
+import com.netanel.moviescompose.domain.RetrofitInstance
 import com.netanel.moviescompose.featureMovieDetails.data.repository.MovieDetailsRepositoryImpl
 import com.netanel.moviescompose.featureMovieDetails.domain.repository.MovieDetailsRepository
 import dagger.Module
@@ -16,6 +17,12 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object MovieDetailsModule {
+
+    @Singleton
+    @Provides
+    fun provideNetworkManager(retrofitInstance: RetrofitInstance): MovieDetailsApiService {
+        return retrofitInstance.create(MovieDetailsApiService::class.java)
+    }
 
         @Provides
         @Singleton

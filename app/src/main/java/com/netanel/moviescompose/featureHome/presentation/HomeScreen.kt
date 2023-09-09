@@ -11,6 +11,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.netanel.moviescompose.R
 import com.netanel.moviescompose.Screen
+import com.netanel.moviescompose.domain.model.Movie
 import com.netanel.moviescompose.ui.components.screenComponents.MovieList
 import com.netanel.moviescompose.ui.components.uiComponents.HorizontalDottedProgressBar
 
@@ -22,13 +23,33 @@ fun HomeScreen(
 ) {
     Column(modifier = modifier.fillMaxSize()) {
         if (viewModel.upcomingMovies.value.isEmpty()) HorizontalDottedProgressBar()
-        else Row() {
+        else Row {
             MovieList(
                 modifier = modifier,
                 headerText = stringResource(id = R.string.upcoming_movies_year),
                 movies = viewModel.upcomingMovies.value,
                 onMovieClicked = { movie ->
-                    navController?.navigate(route = Screen.MovieDetails.withArgs(movie.id))
+                    movie.id?.let { movieId ->
+                        navController?.navigate(route = Screen.MovieDetails.withArgs(movieId))
+                    }
+                })
+        }
+
+    }
+}
+
+@Composable
+fun ScreenContent(modifier: Modifier = Modifier,movies : List<Movie>, navigate : () -> Unit){
+    Column(modifier = modifier.fillMaxSize()) {
+        if (movies.isEmpty()) HorizontalDottedProgressBar()
+        else Row() {
+            MovieList(
+                modifier = modifier,
+                headerText = stringResource(id = R.string.upcoming_movies_year),
+                movies = movies,
+                onMovieClicked = { movie ->
+                    navigate()
+//                    navController?.navigate(route = Screen.MovieDetails.withArgs(movie.id))
                 })
         }
     }
@@ -36,6 +57,4 @@ fun HomeScreen(
 
 @Preview(name = "HomeScreen")
 @Composable
-private fun PreviewHomeScreen() {
-    HomeScreen()
-}
+private fun PreviewHomeScreen() { }
