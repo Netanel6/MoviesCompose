@@ -11,6 +11,7 @@ import com.netanel.moviescompose.domain.model.Movie
 import com.netanel.moviescompose.domain.model.UpcomingMoviesModel
 import com.netanel.moviescompose.featureHome.domain.repository.HomeRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -29,7 +30,7 @@ class HomeViewModel @Inject constructor(private val repository: HomeRepository):
     }
 
     private fun getUpcomingMovies(){
-        viewModelScope.launch {
+        viewModelScope.launch(IO) {
             repository.getUpcomingMovies().enqueue(object: NetworkCallback<UpcomingMoviesModel>(){
                 override fun onSuccess(result: UpcomingMoviesModel?) {
                     if (result != null) {

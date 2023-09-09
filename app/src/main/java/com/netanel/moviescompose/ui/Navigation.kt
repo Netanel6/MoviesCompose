@@ -17,9 +17,12 @@ import com.netanel.moviescompose.featureMovieDetails.presentation.MovieDetailsSc
 fun Navigation() {
     val navController = rememberNavController()
     NavHost(navController = navController, startDestination = Screen.Home.route) {
+        /** Home screen **/
         composable(Screen.Home.route) {
             HomeScreen(navController = navController)
         }
+       
+        /** Movie details screen **/
         composable(
             Screen.MovieDetails.withArgs("{$MOVIE_ID}")
         ) { navBackStackEntry ->

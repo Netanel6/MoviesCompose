@@ -48,11 +48,11 @@ fun MovieItem(modifier: Modifier, movie: Movie? = null, onMovieClicked: (Movie) 
             modifier = modifier
                 .height(150.dp),
             model = movie.primaryImage.url.ifBlank { R.drawable.ic_movie },
-            contentDescription = movie.titleText.text
+            contentDescription = movie.titleText?.text
         )
         AppText(
             modifier = modifier.padding(vertical = 8.dp),
-            text = movie.titleText.text,
+            text = movie.titleText?.text,
             textAlign = TextAlign.Center,
             overflow = TextOverflow.Ellipsis,
             maxLines = 3

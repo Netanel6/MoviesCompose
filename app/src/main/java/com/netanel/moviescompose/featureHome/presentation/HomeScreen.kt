@@ -29,7 +29,9 @@ fun HomeScreen(
                 headerText = stringResource(id = R.string.upcoming_movies_year),
                 movies = viewModel.upcomingMovies.value,
                 onMovieClicked = { movie ->
-                    navController?.navigate(route = Screen.MovieDetails.withArgs(movie.id))
+                    movie.id?.let { movieId ->
+                        navController?.navigate(route = Screen.MovieDetails.withArgs(movieId))
+                    }
                 })
         }
 

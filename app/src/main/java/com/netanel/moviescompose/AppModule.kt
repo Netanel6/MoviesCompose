@@ -1,10 +1,8 @@
 package com.netanel.moviescompose
 
-import com.netanel.moviescompose.featureHome.data.dataSource.HomeApiService
 import com.netanel.moviescompose.domain.RetrofitInstance
 import dagger.Module
 import dagger.Provides
-
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
@@ -22,11 +20,5 @@ object AppModule {
     @Provides
     fun provideRetrofitInstance() = RetrofitInstance
 
-
-    @Singleton
-    @Provides
-    fun provideNetworkManager(retrofitInstance: RetrofitInstance): HomeApiService {
-        return retrofitInstance.create(HomeApiService::class.java)
-    }
 
 }

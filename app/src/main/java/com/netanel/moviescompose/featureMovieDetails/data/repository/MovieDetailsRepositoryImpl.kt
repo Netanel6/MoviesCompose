@@ -1,6 +1,6 @@
 package com.netanel.moviescompose.featureMovieDetails.data.repository
 
-import com.netanel.moviescompose.domain.model.Movie
+import com.netanel.moviescompose.domain.model.MovieDetailsModel
 import com.netanel.moviescompose.featureMovieDetails.data.datasource.MovieDetailsApiService
 import com.netanel.moviescompose.featureMovieDetails.domain.repository.MovieDetailsRepository
 import retrofit2.Call
@@ -12,7 +12,7 @@ import retrofit2.Call
  */
 class MovieDetailsRepositoryImpl(private val networkManager: MovieDetailsApiService) :
     MovieDetailsRepository {
-    override fun getMovieDetails(movieId: String): Call<List<Movie>> {
+    override fun getMovieDetails(movieId: String): Call<MovieDetailsModel> {
         return networkManager.getMovieDetails(movieId)
     }
 }

@@ -6,8 +6,8 @@ package com.netanel.moviescompose
  * NetanelCA2@gmail.com
  */
 sealed class Screen(val route: String) {
-    object Home : Screen("home_screen")
-    object MovieDetails : Screen("movie_details")
+    data object Home : Screen("home_screen")
+    data object MovieDetails : Screen("movie_details")
 
     fun withArgs(vararg args: String): String {
         return buildString {

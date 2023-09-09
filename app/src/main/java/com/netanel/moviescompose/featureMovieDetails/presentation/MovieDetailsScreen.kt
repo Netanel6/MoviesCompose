@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.netanel.moviescompose.ui.components.uiComponents.AppText
 
@@ -20,7 +21,8 @@ import com.netanel.moviescompose.ui.components.uiComponents.AppText
 fun MovieDetailsScreen(
     modifier: Modifier = Modifier,
     movieId: String,
-    navController: NavController? = null
+    navController: NavController? = null,
+    viewModel: MovieDetailsViewModel = hiltViewModel()
 ) {
     val context = LocalContext.current
 
@@ -30,7 +32,8 @@ fun MovieDetailsScreen(
     }*/
 
     Column(modifier = modifier.fillMaxSize()) {
-        AppText(modifier = modifier.clickable{
+        AppText(
+            modifier = modifier.clickable{
             Toast.makeText(context, movieId, Toast.LENGTH_SHORT).show()
         } , text = "Details", )
     }

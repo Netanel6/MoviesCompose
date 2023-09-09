@@ -1,6 +1,6 @@
 package com.netanel.moviescompose.featureMovieDetails.domain.repository
 
-import com.netanel.moviescompose.domain.model.Movie
+import com.netanel.moviescompose.domain.model.MovieDetailsModel
 import retrofit2.Call
 
 
@@ -9,5 +9,5 @@ import retrofit2.Call
  * NetanelCA2@gmail.com
  */
 interface MovieDetailsRepository {
-    fun getMovieDetails(movieId: String): Call<List<Movie>>
+    fun getMovieDetails(movieId: String): Call<MovieDetailsModel>
 }

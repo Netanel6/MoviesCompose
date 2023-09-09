@@ -21,7 +21,7 @@ import androidx.compose.ui.unit.sp
 @Composable
 fun AppText(
     modifier: Modifier,
-    text: String,
+    text: String?,
     textSize: TextUnit = 16.sp,
     textAlign: TextAlign = TextAlign.Start,
     color: Color = Color.White,
@@ -31,7 +31,7 @@ fun AppText(
     Text(
         modifier = modifier,
         style = TextStyle(fontSize = textSize),
-        text = text,
+        text = text?:"",
         textAlign = textAlign,
         color = color,
         fontFamily = FontFamily.Default,
