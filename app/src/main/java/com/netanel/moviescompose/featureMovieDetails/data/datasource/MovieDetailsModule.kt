@@ -1,8 +1,6 @@
 package com.netanel.moviescompose.featureMovieDetails.data.datasource
 
 import com.netanel.moviescompose.domain.RetrofitInstance
-import com.netanel.moviescompose.featureMovieDetails.data.repository.MovieDetailsRepositoryImpl
-import com.netanel.moviescompose.featureMovieDetails.domain.repository.MovieDetailsRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -24,9 +22,9 @@ object MovieDetailsModule {
         return retrofitInstance.create(MovieDetailsApiService::class.java)
     }
 
-        @Provides
+    /*    @Provides
         @Singleton
         fun provideMovieDetailsRepository(apiService: MovieDetailsApiService): MovieDetailsRepository {
             return MovieDetailsRepositoryImpl(apiService)
-        }
+        }*/
 }

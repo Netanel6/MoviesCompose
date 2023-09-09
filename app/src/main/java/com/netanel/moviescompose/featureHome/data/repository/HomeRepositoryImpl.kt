@@ -1,7 +1,7 @@
 package com.netanel.moviescompose.featureHome.data.repository
 
+import com.netanel.moviescompose.domain.newModel.UpcomingMoviesModel
 import com.netanel.moviescompose.featureHome.data.dataSource.HomeApiService
-import com.netanel.moviescompose.domain.model.UpcomingMoviesModel
 import com.netanel.moviescompose.featureHome.domain.repository.HomeRepository
 import retrofit2.Call
 

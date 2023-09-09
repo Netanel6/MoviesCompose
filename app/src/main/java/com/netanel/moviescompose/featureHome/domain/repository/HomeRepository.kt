@@ -1,6 +1,7 @@
 package com.netanel.moviescompose.featureHome.domain.repository
 
-import com.netanel.moviescompose.domain.model.UpcomingMoviesModel
+
+import com.netanel.moviescompose.domain.newModel.UpcomingMoviesModel
 import retrofit2.Call
 
 

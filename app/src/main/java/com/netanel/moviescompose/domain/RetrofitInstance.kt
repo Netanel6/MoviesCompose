@@ -31,12 +31,12 @@ object RetrofitInstance {
         okHttpClient?.interceptors()?.add(Interceptor { chain ->
             val request: Request.Builder = chain.request().newBuilder()
             request.addHeader(
-                NetworkUtils.X_RAPID_KEY,
-                NetworkUtils.RAPID_KEY
+                NetworkUtils.ACCEPT,
+                NetworkUtils.TMDB_KEY
             )
             request.addHeader(
-                NetworkUtils.X_RAPID_HOST,
-                NetworkUtils.RAPID_HOST
+                NetworkUtils.AUTHORIZATION,
+                NetworkUtils.TMDB_AUTH
             )
             chain.proceed(request.build())
         })
