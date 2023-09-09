@@ -24,9 +24,15 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(private val repository: HomeRepository): ViewModel() {
 
     val upcomingMovies: MutableState<List<Movie>> = mutableStateOf(ArrayList())
+    val nowPlayingMovies: MutableState<List<Movie>> = mutableStateOf(ArrayList())
+    val topRatedMovies: MutableState<List<Movie>> = mutableStateOf(ArrayList())
+    val popularMovies: MutableState<List<Movie>> = mutableStateOf(ArrayList())
 
     init {
         getUpcomingMovies()
+        getNowPlayingMovies()
+        getTopRatedMovies()
+        getPopularMovies()
     }
 
     private fun getUpcomingMovies(){
@@ -35,6 +41,50 @@ class HomeViewModel @Inject constructor(private val repository: HomeRepository):
                 override fun onSuccess(result: UpcomingMoviesModel?) {
                     if (result != null) {
                         upcomingMovies.value = result.results
+                    }
+                }
+                override fun onFailure(error: DefaultRestError?) {
+                    Log.i(TAG, "onFailure: $error")
+                }
+            })
+        }
+    }
+
+    private fun getNowPlayingMovies(){
+        viewModelScope.launch(IO) {
+            repository.getNowPlayingMovies().enqueue(object: NetworkCallback<UpcomingMoviesModel>(){
+                override fun onSuccess(result: UpcomingMoviesModel?) {
+                    if (result != null) {
+                        nowPlayingMovies.value = result.results
+                    }
+                }
+                override fun onFailure(error: DefaultRestError?) {
+                    Log.i(TAG, "onFailure: $error")
+                }
+            })
+        }
+    }
+    private fun getTopRatedMovies(){
+        viewModelScope.launch(IO) {
+            repository.getTopRatedMovies().enqueue(object: NetworkCallback<UpcomingMoviesModel>(){
+                override fun onSuccess(result: UpcomingMoviesModel?) {
+                    if (result != null) {
+                        topRatedMovies.value = result.results
+                    }
+                }
+                override fun onFailure(error: DefaultRestError?) {
+                    Log.i(TAG, "onFailure: $error")
+                }
+            })
+        }
+    }
+
+    private fun getPopularMovies(){
+        viewModelScope.launch(IO) {
+            repository.getPopularMovies().enqueue(object: NetworkCallback<UpcomingMoviesModel>(){
+                override fun onSuccess(result: UpcomingMoviesModel?) {
+                    if (result != null) {
+                        popularMovies.value = result.results
                     }
                 }
                 override fun onFailure(error: DefaultRestError?) {

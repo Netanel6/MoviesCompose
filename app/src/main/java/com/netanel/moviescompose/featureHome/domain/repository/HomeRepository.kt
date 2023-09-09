@@ -11,4 +11,7 @@ import retrofit2.Call
  */
 interface HomeRepository {
     fun getUpcomingMovies(): Call<UpcomingMoviesModel>
+    fun getNowPlayingMovies(): Call<UpcomingMoviesModel>
+    fun getTopRatedMovies(): Call<UpcomingMoviesModel>
+    fun getPopularMovies(): Call<UpcomingMoviesModel>
 }
