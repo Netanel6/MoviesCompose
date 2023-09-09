@@ -13,7 +13,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.netanel.moviescompose.domain.model.Movie
+import com.netanel.moviescompose.domain.newModel.Movie
 import com.netanel.moviescompose.ui.components.uiComponents.AppText
 
 /**
@@ -41,10 +41,8 @@ fun MovieList(
             modifier = modifier
                 .wrapContentHeight()
         ) {
-            itemsIndexed(items = movies) { _, movie ->
-                MovieItem(modifier = modifier, movie, onMovieClicked)
-            }
-          /*  item {
+          /* Example how to add only one item
+            item {
                 AppText(
                     modifier = modifier
                         .padding(horizontal = 8.dp, vertical = 12.dp)

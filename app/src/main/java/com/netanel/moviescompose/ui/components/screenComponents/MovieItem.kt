@@ -17,8 +17,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
-import com.netanel.moviescompose.R
-import com.netanel.moviescompose.domain.model.Movie
+import com.netanel.moviescompose.domain.newModel.Movie
 import com.netanel.moviescompose.ui.components.uiComponents.AppText
 
 @OptIn(ExperimentalGlideComposeApi::class)
@@ -34,7 +33,7 @@ fun MovieItem(modifier: Modifier, movie: Movie? = null, onMovieClicked: (Movie) 
             shape = MaterialTheme.shapes.large,
             backgroundColor = Color.Transparent,
         ) {*/
-    if (movie?.primaryImage?.url != null)
+    if (movie?.poster_path != null)
     Column(
         modifier = modifier
             .wrapContentHeight()
@@ -47,19 +46,19 @@ fun MovieItem(modifier: Modifier, movie: Movie? = null, onMovieClicked: (Movie) 
             contentScale = ContentScale.Crop,
             modifier = modifier
                 .height(150.dp),
-            model = movie.primaryImage.url.ifBlank { R.drawable.ic_movie },
-            contentDescription = movie.titleText?.text
+            model = movie.fullPosterPath,
+            contentDescription = movie.title
         )
         AppText(
             modifier = modifier.padding(vertical = 8.dp),
-            text = movie.titleText?.text,
+            text = movie.title,
             textAlign = TextAlign.Center,
             overflow = TextOverflow.Ellipsis,
             maxLines = 3
         )
         AppText(
             modifier = modifier,
-            text = movie.fullReleaseDate
+            text = movie.release_date
         )
     }
 //    }

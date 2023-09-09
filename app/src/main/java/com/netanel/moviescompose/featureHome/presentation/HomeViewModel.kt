@@ -7,8 +7,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.netanel.moviescompose.domain.DefaultRestError
 import com.netanel.moviescompose.domain.NetworkCallback
-import com.netanel.moviescompose.domain.model.Movie
-import com.netanel.moviescompose.domain.model.UpcomingMoviesModel
+import com.netanel.moviescompose.domain.newModel.Movie
+import com.netanel.moviescompose.domain.newModel.UpcomingMoviesModel
 import com.netanel.moviescompose.featureHome.domain.repository.HomeRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers.IO
@@ -34,15 +34,12 @@ class HomeViewModel @Inject constructor(private val repository: HomeRepository):
             repository.getUpcomingMovies().enqueue(object: NetworkCallback<UpcomingMoviesModel>(){
                 override fun onSuccess(result: UpcomingMoviesModel?) {
                     if (result != null) {
-                        Log.i(TAG, "onSuccess: $result")
                         upcomingMovies.value = result.results
                     }
                 }
-
                 override fun onFailure(error: DefaultRestError?) {
                     Log.i(TAG, "onFailure: $error")
                 }
-
             })
         }
     }
