@@ -11,4 +11,7 @@ interface HomeApiService {
 
     @GET("movie/now_playing?language=en-US&page=1")
     fun getNowPlayingMovies(): Call<UpcomingMoviesModel>
+
+    @GET("movie/top_rated?language=en-US&page=1")
+    fun getTopRatedMovies(): Call<UpcomingMoviesModel>
 }

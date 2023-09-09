@@ -3,6 +3,7 @@ package com.netanel.moviescompose.featureHome.presentation
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -20,8 +21,11 @@ fun HomeScreen(
     viewModel: HomeViewModel = hiltViewModel()
 ) {
     Column(modifier = modifier.fillMaxSize()) {
-        if (viewModel.upcomingMovies.value.isEmpty() && viewModel.nowPlayingMovies.value.isEmpty()) HorizontalDottedProgressBar()
-        else Row {
+        if (viewModel.upcomingMovies.value.isEmpty() &&
+            viewModel.nowPlayingMovies.value.isEmpty() &&
+            viewModel.nowPlayingMovies.value.isEmpty()
+        ) HorizontalDottedProgressBar()
+        else Row(modifier = modifier.wrapContentHeight()) {
             MovieList(
                 modifier = modifier,
                 headerText = stringResource(id = R.string.upcoming_movies_year),
@@ -32,7 +36,7 @@ fun HomeScreen(
                     }*/
                 })
         }
-        Row {
+        Row(modifier = modifier.wrapContentHeight()) {
             MovieList(
                 modifier = modifier,
                 headerText = stringResource(id = R.string.now_playing),
@@ -43,7 +47,17 @@ fun HomeScreen(
                     }*/
                 })
         }
-
+        Row(modifier = modifier.wrapContentHeight()) {
+            MovieList(
+                modifier = modifier,
+                headerText = stringResource(id = R.string.top_rated),
+                movies = viewModel.topRatedMovies.value,
+                onMovieClicked = { movie ->
+                    /*movie.id.let { movieId ->
+                        navController?.navigate(route = Screen.MovieDetails.withArgs(movieId))
+                    }*/
+                })
+        }
     }
 }
 

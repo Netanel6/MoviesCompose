@@ -25,10 +25,12 @@ class HomeViewModel @Inject constructor(private val repository: HomeRepository):
 
     val upcomingMovies: MutableState<List<Movie>> = mutableStateOf(ArrayList())
     val nowPlayingMovies: MutableState<List<Movie>> = mutableStateOf(ArrayList())
+    val topRatedMovies: MutableState<List<Movie>> = mutableStateOf(ArrayList())
 
     init {
         getUpcomingMovies()
         getNowPlayingMovies()
+        getTopRatedMovies()
     }
 
     private fun getUpcomingMovies(){
@@ -52,6 +54,20 @@ class HomeViewModel @Inject constructor(private val repository: HomeRepository):
                 override fun onSuccess(result: UpcomingMoviesModel?) {
                     if (result != null) {
                         nowPlayingMovies.value = result.results
+                    }
+                }
+                override fun onFailure(error: DefaultRestError?) {
+                    Log.i(TAG, "onFailure: $error")
+                }
+            })
+        }
+    }
+    private fun getTopRatedMovies(){
+        viewModelScope.launch(IO) {
+            repository.getTopRatedMovies().enqueue(object: NetworkCallback<UpcomingMoviesModel>(){
+                override fun onSuccess(result: UpcomingMoviesModel?) {
+                    if (result != null) {
+                        topRatedMovies.value = result.results
                     }
                 }
                 override fun onFailure(error: DefaultRestError?) {
