@@ -34,31 +34,32 @@ fun MovieItem(modifier: Modifier, movie: Movie? = null, onMovieClicked: (Movie) 
             shape = MaterialTheme.shapes.large,
             backgroundColor = Color.Transparent,
         ) {*/
+    if (movie?.primaryImage?.url != null)
     Column(
         modifier = modifier
             .wrapContentHeight()
             .width(120.dp)
             .padding(horizontal = 8.dp)
-            .clickable { movie?.let { onMovieClicked(it) } },
+            .clickable { onMovieClicked(movie) },
         horizontalAlignment = CenterHorizontally
     ) {
         GlideImage(
             contentScale = ContentScale.Crop,
             modifier = modifier
                 .height(150.dp),
-            model = if (movie?.primaryImage?.url?.isNotBlank() == true) movie.primaryImage.url else R.drawable.ic_movie,
-            contentDescription = movie?.titleText?.text
+            model = movie.primaryImage.url.ifBlank { R.drawable.ic_movie },
+            contentDescription = movie.titleText.text
         )
         AppText(
             modifier = modifier.padding(vertical = 8.dp),
-            text = movie?.titleText?.text.toString(),
+            text = movie.titleText.text,
             textAlign = TextAlign.Center,
             overflow = TextOverflow.Ellipsis,
             maxLines = 3
         )
         AppText(
             modifier = modifier,
-            text = movie?.fullReleaseDate.toString()
+            text = movie.fullReleaseDate
         )
     }
 //    }

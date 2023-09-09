@@ -1,6 +1,5 @@
 package com.netanel.moviescompose.ui.components.uiComponents
 
-import androidx.compose.foundation.clickable
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -25,15 +24,12 @@ fun AppText(
     text: String,
     textSize: TextUnit = 16.sp,
     textAlign: TextAlign = TextAlign.Start,
-    color: Color = Color.Black,
+    color: Color = Color.White,
     overflow: TextOverflow = TextOverflow.Visible,
-    maxLines: Int = 1,
-    onClick: () -> Unit? = {},
+    maxLines: Int = 1
 ) {
     Text(
-        modifier = modifier.clickable {
-            onClick
-        },
+        modifier = modifier,
         style = TextStyle(fontSize = textSize),
         text = text,
         textAlign = textAlign,
