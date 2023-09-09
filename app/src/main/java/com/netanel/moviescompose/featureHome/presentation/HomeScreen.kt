@@ -20,12 +20,23 @@ fun HomeScreen(
     viewModel: HomeViewModel = hiltViewModel()
 ) {
     Column(modifier = modifier.fillMaxSize()) {
-        if (viewModel.upcomingMovies.value.isEmpty()) HorizontalDottedProgressBar()
+        if (viewModel.upcomingMovies.value.isEmpty() && viewModel.nowPlayingMovies.value.isEmpty()) HorizontalDottedProgressBar()
         else Row {
             MovieList(
                 modifier = modifier,
                 headerText = stringResource(id = R.string.upcoming_movies_year),
                 movies = viewModel.upcomingMovies.value,
+                onMovieClicked = { movie ->
+                    /*movie.id.let { movieId ->
+                        navController?.navigate(route = Screen.MovieDetails.withArgs(movieId))
+                    }*/
+                })
+        }
+        Row {
+            MovieList(
+                modifier = modifier,
+                headerText = stringResource(id = R.string.now_playing),
+                movies = viewModel.nowPlayingMovies.value,
                 onMovieClicked = { movie ->
                     /*movie.id.let { movieId ->
                         navController?.navigate(route = Screen.MovieDetails.withArgs(movieId))
