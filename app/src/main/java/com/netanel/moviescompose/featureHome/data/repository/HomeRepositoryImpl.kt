@@ -22,4 +22,8 @@ class HomeRepositoryImpl(private val networkManager: HomeApiService): HomeReposi
     override fun getTopRatedMovies(): Call<UpcomingMoviesModel> {
        return networkManager.getTopRatedMovies()
     }
+
+    override fun getPopularMovies(): Call<UpcomingMoviesModel> {
+       return networkManager.getPopularMovies()
+    }
 }

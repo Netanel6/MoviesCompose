@@ -3,4 +3,5 @@
     <string name="upcoming_movies_year">Upcoming movies</string>
     <string name="now_playing">Now playing</string>
     <string name="top_rated">Top rated</string>
+    <string name="popular">Popular</string>
 </resources>
